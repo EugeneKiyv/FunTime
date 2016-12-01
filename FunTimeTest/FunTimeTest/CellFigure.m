@@ -29,19 +29,11 @@ static NSUInteger const indent = 10;
 }
 
 - (void)showCrossInPoint:(CGPoint)point intoCube:(CGFloat)cubeSize  {
-    UIBezierPath *xPathFrom = [UIBezierPath bezierPath];
-    [xPathFrom moveToPoint:CGPointMake(point.x*cubeSize + indent, point.y*cubeSize+ indent)];
-    [xPathFrom addLineToPoint:CGPointMake(point.x*cubeSize + indent, point.y*cubeSize+indent)];
-    UIBezierPath *xPathTo= [UIBezierPath bezierPath];
-    [xPathTo moveToPoint:CGPointMake(point.x*cubeSize + indent, point.y*cubeSize+ indent)];
-    [xPathTo addLineToPoint:CGPointMake((point.x+1)*cubeSize - indent, (point.y+1)*cubeSize - indent)];
-    [CABasicAnimation morphFromPath:xPathFrom toPath:xPathTo inView:self.view withWidth:5.];
-    xPathFrom = [UIBezierPath bezierPath];
-    [xPathFrom moveToPoint:CGPointMake((point.x+1)*cubeSize - indent, point.y*cubeSize+ indent)];
-    [xPathFrom addLineToPoint:CGPointMake((point.x+1)*cubeSize - indent, point.y*cubeSize+indent)];
-    xPathTo= [UIBezierPath bezierPath];
-    [xPathTo moveToPoint:CGPointMake(point.x*cubeSize + indent, (point.y+1)*cubeSize - indent)];
-    [xPathTo addLineToPoint:CGPointMake((point.x+1)*cubeSize - indent, (point.y)*cubeSize + indent)];
-    [CABasicAnimation morphFromPath:xPathFrom toPath:xPathTo inView:self.view withWidth:5.];
+    [self.view drawLineFrom:CGPointMake(point.x*cubeSize+indent, point.y*cubeSize+indent)
+                         to:CGPointMake((point.x+1)*cubeSize - indent, (point.y+1)*cubeSize - indent)
+                      width:5.];
+    [self.view drawLineFrom:CGPointMake((point.x+1)*cubeSize-indent, point.y*cubeSize+indent)
+                         to:CGPointMake(point.x*cubeSize+indent, (point.y+1)*cubeSize-indent)
+                      width:5.];
 }
 @end

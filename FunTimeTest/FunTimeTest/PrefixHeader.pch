@@ -10,5 +10,6 @@
 #define PrefixHeader_pch
 
 #import "CABasicAnimation+FunTime.h"
+#import "UIView+Draw.h"
 
 #endif /* PrefixHeader_pch */

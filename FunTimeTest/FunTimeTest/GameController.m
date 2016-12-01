@@ -1,4 +1,4 @@
-
+ 
 //
 //  GameController.m
 //  FunTimeTest
@@ -10,6 +10,7 @@
 #import "GameController.h"
 #import "GameView.h"
 #import "CellFigure.h"
+#import "BluetoothConnector.h"
 
 typedef enum {
     CellStateEmpty = 0,
@@ -17,18 +18,24 @@ typedef enum {
     CellStateZero
 } CellState;
 
-@interface GameController () <GameViewDelegate>
+@interface GameController () <GameViewDelegate,BluetoothConnectorDelegate>
 @property (weak, nonatomic) GameView *gameView;
 @property (strong, nonatomic) NSMutableArray<NSMutableArray *> *gameCells;
 @property (assign, nonatomic) BOOL isCroosQueue;
+@property (weak, nonatomic) IBOutlet UIButton *bluetoothButton;
+@property (strong, nonatomic) BluetoothConnector *btConnector;
+@property (assign, nonatomic, getter=isPresentOtherPlayer) BOOL presentOtherPlayer;
+@property (assign, nonatomic) CellState mineFigure;
+@property (assign, nonatomic) BOOL mineTurn;
 @end
 
 @implementation GameController
 
+static const NSString *newGameMessage = @"new game";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    self.btConnector = [[BluetoothConnector alloc] initWithDelegate:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -43,6 +50,7 @@ typedef enum {
 
 - (IBAction)newGameTapped:(id)sender {
     [self startGame];
+    [self.btConnector sendMessage:@{newGameMessage:@(YES)}];
 }
 
 - (void)startGame {
@@ -65,11 +73,16 @@ typedef enum {
                       [NSMutableArray arrayWithObjects:@(CellStateEmpty),@(CellStateEmpty),@(CellStateEmpty), nil],nil];
     
     self.isCroosQueue = YES;
-    
-    
-
+    self.mineFigure = CellStateEmpty;
+    self.mineTurn = YES;
 }
-- (void)didTapOnPoint:(CGPoint)point {
+
+#pragma mark - GameViewDelegate
+- (void)didTapOnPoint:(CGPoint)point sender:(id)sender {
+    if (self.isPresentOtherPlayer && !self.mineTurn && ![sender isEqual:self]) {
+        [self showError];
+        return;
+    }
     if ([self.gameCells[(int)point.x][(int)point.y] integerValue] == CellStateEmpty) {
         CellFigure *figure = [CellFigure new];
         figure.view = self.gameView;
@@ -81,17 +94,29 @@ typedef enum {
             [figure showRoundInPoint:point intoCube:CGRectGetWidth(self.gameView.bounds)/3.];
         }
         self.isCroosQueue = !self.isCroosQueue;
+        if (self.mineTurn) {
+            [self.btConnector sendMessage:@{@"X":@((int)point.x),@"Y":@((int)point.y)}];
+            self.mineTurn = NO;
+        }
         [self checkPoint:point];
     } else {
-        [UIView animateWithDuration:0.2 animations:^{
-            self.gameView.backgroundColor = [UIColor redColor];
-        } completion:^(BOOL finished) {
-            self.gameView.backgroundColor = [UIColor clearColor];
-        }];
+        [self showError];
     }
 }
 
+- (void)showError {
+    [UIView animateWithDuration:0.2 animations:^{
+        self.gameView.backgroundColor = [UIColor redColor];
+    } completion:^(BOOL finished) {
+        self.gameView.backgroundColor = [UIColor clearColor];
+    }];
+}
+
+#pragma mark -
 - (void)checkPoint:(CGPoint)point {
+    if (self.isPresentOtherPlayer && self.mineFigure == CellStateEmpty) {
+        self.mineFigure = CellStateCross;
+    }
     NSNumber *currentFigure = self.gameCells[(int)point.x][(int)point.y];
     BOOL vertical = YES;
     for (int x = 0; x <= 2; x++) {
@@ -158,4 +183,34 @@ typedef enum {
     [self presentViewController:ac animated:YES completion:nil];
 }
 
+#pragma mark - BluetoothConnectorDelegate
+- (void)recivedMessage:(NSDictionary *)message {
+    if (message[@"X"]) {
+        self.mineTurn = NO;
+        CGPoint point = {.x = [message[@"X"] integerValue], .y = [message[@"Y"] integerValue]};
+        if (self.mineFigure == CellStateEmpty) {
+            self.mineFigure = CellStateZero;
+        }
+        [self didTapOnPoint:point sender:self];
+        self.mineTurn = YES;
+    } else if ([message[newGameMessage] boolValue]) {
+        [self startGame];
+    }
+}
+
+- (void)didConnect {
+    self.presentOtherPlayer = YES;
+}
+
+- (void)didDisconnect {
+    self.presentOtherPlayer = NO;
+}
+
+- (void)didChangeBluetoothAvailable:(BOOL)available {
+    self.bluetoothButton.hidden = available;
+}
+
+- (IBAction)turnOnBluetooth:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=Bluetooth"]];
+}
 @end

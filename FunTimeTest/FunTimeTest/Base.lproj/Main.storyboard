@@ -28,13 +28,27 @@
                                     <action selector="newGameTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="l1x-Rb-2UY"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fhg-ow-SBT">
+                                <rect key="frame" x="124" y="28" width="126" height="30"/>
+                                <state key="normal" title="Turn on bluetooth ">
+                                    <color key="titleColor" red="0.86274509799999999" green="0.23921568630000001" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="turnOnBluetooth:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jce-Ql-FIj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Fhg-ow-SBT" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="6NT-si-e16"/>
                             <constraint firstItem="8Cx-DF-qPE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9em-Z5-gSn"/>
+                            <constraint firstItem="Fhg-ow-SBT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cy6-hm-SZq"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="8Cx-DF-qPE" secondAttribute="bottom" constant="8" id="zPb-Os-R1b"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="bluetoothButton" destination="Fhg-ow-SBT" id="HPn-CV-TPw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

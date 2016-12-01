@@ -43,7 +43,7 @@ static CGFloat const indent = 15.;
         CGPoint cell;
         cell.x = (int)(point.x / self.cellHeight);
         cell.y = (int)(point.y / self.cellHeight);
-        [self.delegate didTapOnPoint:cell];
+        [self.delegate didTapOnPoint:cell sender:self];
     }
 }
 
@@ -69,15 +69,5 @@ static CGFloat const indent = 15.;
     [self drawLineFrom:CGPointMake(self.width-indent, indent)
                     to:CGPointMake(indent,self.width-indent)
                  width:10.];
-}
-
-- (void)drawLineFrom:(CGPoint)pointStart to:(CGPoint)pointEnd width:(CGFloat)width {
-    UIBezierPath *xPathFrom = [UIBezierPath bezierPath];
-    [xPathFrom moveToPoint:pointStart];
-    [xPathFrom addLineToPoint:pointStart];
-    UIBezierPath *xPathTo= [UIBezierPath bezierPath];
-    [xPathTo moveToPoint:pointStart];
-    [xPathTo addLineToPoint:pointEnd];
-    [CABasicAnimation morphFromPath:xPathFrom toPath:xPathTo inView:self withWidth:width];
 }
 @end

@@ -16,6 +16,10 @@
 		C6A684611DEEE25E004DEC76 /* GameView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A684601DEEE25E004DEC76 /* GameView.m */; };
 		C6A684661DEEE34A004DEC76 /* CABasicAnimation+FunTime.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A684651DEEE34A004DEC76 /* CABasicAnimation+FunTime.m */; };
 		C6A6846A1DEEF7CB004DEC76 /* CellFigure.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A684691DEEF7CB004DEC76 /* CellFigure.m */; };
+		C6A684741DEF172B004DEC76 /* BluetoothConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A6846D1DEF172B004DEC76 /* BluetoothConnector.m */; };
+		C6A684761DEF172B004DEC76 /* CentralClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A684711DEF172B004DEC76 /* CentralClient.m */; };
+		C6A684771DEF172B004DEC76 /* PeripheralServer.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A684731DEF172B004DEC76 /* PeripheralServer.m */; };
+		C6A6847A1DF00A47004DEC76 /* UIView+Draw.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A684791DF00A47004DEC76 /* UIView+Draw.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +40,14 @@
 		C6A684671DEEE412004DEC76 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		C6A684681DEEF7CB004DEC76 /* CellFigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellFigure.h; sourceTree = "<group>"; };
 		C6A684691DEEF7CB004DEC76 /* CellFigure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellFigure.m; sourceTree = "<group>"; };
+		C6A6846C1DEF172B004DEC76 /* BluetoothConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothConnector.h; sourceTree = "<group>"; };
+		C6A6846D1DEF172B004DEC76 /* BluetoothConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothConnector.m; sourceTree = "<group>"; };
+		C6A684701DEF172B004DEC76 /* CentralClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CentralClient.h; sourceTree = "<group>"; };
+		C6A684711DEF172B004DEC76 /* CentralClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CentralClient.m; sourceTree = "<group>"; };
+		C6A684721DEF172B004DEC76 /* PeripheralServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeripheralServer.h; sourceTree = "<group>"; };
+		C6A684731DEF172B004DEC76 /* PeripheralServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeripheralServer.m; sourceTree = "<group>"; };
+		C6A684781DF00A47004DEC76 /* UIView+Draw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Draw.h"; sourceTree = "<group>"; };
+		C6A684791DF00A47004DEC76 /* UIView+Draw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Draw.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +86,7 @@
 				C6A684621DEEE26B004DEC76 /* Views */,
 				C6A684681DEEF7CB004DEC76 /* CellFigure.h */,
 				C6A684691DEEF7CB004DEC76 /* CellFigure.m */,
+				C6A6846B1DEF172B004DEC76 /* Bluetooth */,
 				C6A684511DEED397004DEC76 /* Main.storyboard */,
 				C6A684541DEED397004DEC76 /* Assets.xcassets */,
 				C6A684561DEED397004DEC76 /* LaunchScreen.storyboard */,
@@ -90,6 +103,8 @@
 				C6A684671DEEE412004DEC76 /* PrefixHeader.pch */,
 				C6A684641DEEE34A004DEC76 /* CABasicAnimation+FunTime.h */,
 				C6A684651DEEE34A004DEC76 /* CABasicAnimation+FunTime.m */,
+				C6A684781DF00A47004DEC76 /* UIView+Draw.h */,
+				C6A684791DF00A47004DEC76 /* UIView+Draw.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -110,6 +125,19 @@
 				C6A6844F1DEED397004DEC76 /* GameController.m */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		C6A6846B1DEF172B004DEC76 /* Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				C6A6846C1DEF172B004DEC76 /* BluetoothConnector.h */,
+				C6A6846D1DEF172B004DEC76 /* BluetoothConnector.m */,
+				C6A684701DEF172B004DEC76 /* CentralClient.h */,
+				C6A684711DEF172B004DEC76 /* CentralClient.m */,
+				C6A684721DEF172B004DEC76 /* PeripheralServer.h */,
+				C6A684731DEF172B004DEC76 /* PeripheralServer.m */,
+			);
+			path = Bluetooth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,8 +215,12 @@
 				C6A684501DEED397004DEC76 /* GameController.m in Sources */,
 				C6A6846A1DEEF7CB004DEC76 /* CellFigure.m in Sources */,
 				C6A6844D1DEED397004DEC76 /* AppDelegate.m in Sources */,
+				C6A684741DEF172B004DEC76 /* BluetoothConnector.m in Sources */,
+				C6A6847A1DF00A47004DEC76 /* UIView+Draw.m in Sources */,
 				C6A684661DEEE34A004DEC76 /* CABasicAnimation+FunTime.m in Sources */,
 				C6A684611DEEE25E004DEC76 /* GameView.m in Sources */,
+				C6A684761DEF172B004DEC76 /* CentralClient.m in Sources */,
+				C6A684771DEF172B004DEC76 /* PeripheralServer.m in Sources */,
 				C6A6844A1DEED397004DEC76 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,6 +342,7 @@
 				DEVELOPMENT_TEAM = TNEBUX63KG;
 				GCC_PREFIX_HEADER = FunTimeTest/PrefixHeader.pch;
 				INFOPLIST_FILE = FunTimeTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ua.home.FunTimeTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -323,6 +356,7 @@
 				DEVELOPMENT_TEAM = TNEBUX63KG;
 				GCC_PREFIX_HEADER = FunTimeTest/PrefixHeader.pch;
 				INFOPLIST_FILE = FunTimeTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ua.home.FunTimeTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";

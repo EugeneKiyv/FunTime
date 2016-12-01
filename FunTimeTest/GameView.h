@@ -10,7 +10,7 @@
 
 @protocol GameViewDelegate <NSObject>
 
-- (void)didTapOnPoint:(CGPoint)point;
+- (void)didTapOnPoint:(CGPoint)point sender:(id)sender;
 
 @end
 
